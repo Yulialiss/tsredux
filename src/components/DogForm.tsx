@@ -8,20 +8,18 @@ const DogForm: React.FC = () => {
   const dispatch = useDispatch();
   const { name, breed, age, submitted } = useSelector((state: RootState) => state.dogForm);
 
-  // Оновлення стану форми при введенні даних
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     dispatch(setDogFormData({ ...state.dogForm, [name]: value }));
   };
 
-  // Відправка форми для створення собаки
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
       await axios.post('https://dogs.kobernyk.com/api/v1/dogs', { name, breed, age });
-      dispatch(setFormSubmitted()); // Позначити, що форма надіслана
-      dispatch(clearDogFormData()); // Очищаємо форму після успішного створення
+      dispatch(setFormSubmitted()); 
+      dispatch(clearDogFormData()); 
     } catch (error) {
       console.error('Error creating dog:', error);
     }

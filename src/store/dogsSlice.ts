@@ -1,4 +1,3 @@
-// src/store/dogSlice.ts
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
